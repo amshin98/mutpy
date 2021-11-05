@@ -19,6 +19,7 @@ standard_operators = {
     BreakContinueReplacement,
     ConditionalOperatorDeletion,
     ConditionalOperatorInsertion,
+    ConditionalOperatorFalse,
     ConditionalOperatorTrue,
     ConstantReplacement,
     DecoratorDeletion,

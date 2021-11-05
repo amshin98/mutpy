@@ -331,6 +331,22 @@ class ConditionalOperatorDeletionTest(OperatorTestCase):
         self.assert_mutation('x not in y', ['x in y'])
 
 
+class ConditionalOperatorFalseTest(OperatorTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.op = operators.ConditionalOperatorFalse()
+
+    def test_if(self):
+        self.assert_mutation('if x:' + EOL + INDENT + 'pass', ['if False:' + EOL + INDENT + 'pass'])
+
+    def test_while(self):
+        self.assert_mutation('while x:' + EOL + INDENT + 'pass', ['while False:' + EOL + INDENT + 'pass'])
+
+    def test_if_exp(self):
+        self.assert_mutation('3 if x else 5', ['3 if False else 5'])
+
+
 class ConditionalOperatorTrueTest(OperatorTestCase):
 
     @classmethod
