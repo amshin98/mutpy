@@ -29,6 +29,25 @@ class ConditionalOperatorInsertion(MutationOperator):
         return ast.NotIn()
 
 
+class ConditionalOperatorFalse(MutationOperator):
+    def replace_test_false(self, node):
+        false_node = ast.NameConstant(value=False)
+        node.test = false_node
+        return node
+
+    @copy_node
+    def mutate_If(self, node):
+        return self.replace_test_false(node)
+
+    @copy_node
+    def mutate_While(self, node):
+        return self.replace_test_false(node)
+
+    @copy_node
+    def mutate_IfExp(self, node):
+        return self.replace_test_false(node)
+
+
 class ConditionalOperatorTrue(MutationOperator):
     def replace_test_true(self, node):
         true_node = ast.NameConstant(value=True)
