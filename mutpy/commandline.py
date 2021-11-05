@@ -178,3 +178,6 @@ def list_hom_strategies():
     print('HOM strategies:')
     for strategy in controller.hom_strategies:
         print(' - {}'.format(strategy.name))
+
+if __name__ == "__main__":
+    main(sys.argv)
