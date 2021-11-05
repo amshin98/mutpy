@@ -337,6 +337,15 @@ class ConditionalOperatorTrueTest(OperatorTestCase):
     def setUpClass(cls):
         cls.op = operators.ConditionalOperatorTrue()
 
+    def test_if(self):
+        self.assert_mutation('if x:' + EOL + INDENT + 'pass', ['if True:' + EOL + INDENT + 'pass'])
+
+    def test_while(self):
+        self.assert_mutation('while x:' + EOL + INDENT + 'pass', ['while True:' + EOL + INDENT + 'pass'])
+
+    def test_if_exp(self):
+        self.assert_mutation('3 if x else 5', ['3 if True else 5'])
+
 
 class ExceptionSwallowingTest(OperatorTestCase):
 
