@@ -29,6 +29,17 @@ class ConditionalOperatorInsertion(MutationOperator):
         return ast.NotIn()
 
 
+class ConditionalOperatorTrue(MutationOperator):
+    def replace_test_true(self, node):
+        true_node = ast.Constant(value=True)
+        node.test = true_node
+        return node
+
+    @copy_node
+    def mutate_If(self, node):
+        return self.replace_test_true(node)
+
+
 class LogicalConnectorReplacement(MutationOperator):
     def mutate_And(self, node):
         return ast.Or()

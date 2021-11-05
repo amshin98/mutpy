@@ -331,6 +331,13 @@ class ConditionalOperatorDeletionTest(OperatorTestCase):
         self.assert_mutation('x not in y', ['x in y'])
 
 
+class ConditionalOperatorTrueTest(OperatorTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.op = operators.ConditionalOperatorTrue()
+
+
 class ExceptionSwallowingTest(OperatorTestCase):
 
     @classmethod
